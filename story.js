@@ -108,10 +108,11 @@ function reset() {
   
   joustEvent = false;
   horseraceEvent = false;
-  gameMap = origionalGameMap;
-  fillMap(3);
-  fillMap(2);
-  drawGame();
+  cultureNumber = 0;
+  expandNumber = 0;
+  wisdomNumber = 0;
+  politicsNumber = 0;
+  eventNumber = 0;
 }
 
 function changeRoom(dir) {
@@ -1362,10 +1363,10 @@ var rooms = {
   },
   throne7: {
     description:
-      "Wake up...You must have been dreaming about your coronation day.",
+      "Wake up...You must have been dreaming about your coronation day. Type THRONE to start...",
     directions: {
-      yes: "start",
-      no: "start",
+      yes: "throne7",
+      no: "throne7",
     },
   },
   throne8: {
