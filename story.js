@@ -42,54 +42,76 @@ var commands = ["go", "pickup", "inventory", "talk", "use"];
 var inventory = ["torch", "spear"];
 let storyArray = ["culture", "expand", "wisdom", "politics"];
 
-
-
 function achievementsUnlocked() {
-  let unlocked = ["Achevements: "]
+  loadMap();
+  let unlocked = ["Achevements: "];
   let achievements = {
-library,tyrant,encourage,soldiersMonument,godsMonument,meMonument,city,prophecy,friends,horserace,gladiators,festival,unrest,wisdom,knowledge,trade,freeTrade,lands,fight,alliance,comedy,joke,embassy,host,empire,tribute,democracy
-};
-var result;
-for (var i in achievements) {
-    if (achievements[i] === true) {      
-      //console.log(i);  
+    library,
+    tyrant,
+    encourage,
+    soldiersMonument,
+    godsMonument,
+    meMonument,
+    city,
+    prophecy,
+    friends,
+    horserace,
+    gladiators,
+    festival,
+    unrest,
+    wisdom,
+    knowledge,
+    trade,
+    freeTrade,
+    lands,
+    fight,
+    alliance,
+    comedy,
+    joke,
+    embassy,
+    host,
+    empire,
+    tribute,
+    democracy,
+  };
+  var result;
+  for (var i in achievements) {
+    if (achievements[i] === true) {
+      //console.log(i);
       result = true;
-        unlocked.push(" "+i.toUpperCase())
+      unlocked.push(" " + i.toUpperCase());
     } else {
       //console.log(i);
       result = false;
-      unlocked.push(" ??????????")
+      unlocked.push(" ??????????");
     }
-}
-  unlocked.push(" ------ to unlock more type RESET ------")
+  }
+  unlocked.push(" ------ to unlock more type RESET ------");
   $("#game-text").hide().text(unlocked.toString()).fadeIn(1000);
- declareWinner.innerText = "Score: Blue: "+blueScore+" / Red: "+redScore 
+  declareWinner.innerText = "Score: Blue: " + blueScore + " / Red: " + redScore;
 }
 
 function reset() {
   currentRoom = "throne7";
-          $("#game-text")
-            .hide()
-            .text(rooms[currentRoom].description)
-            .fadeIn(1000);
-          declareWinner.innerText = "You lost the throne";
-canWar = false;
-attackerWin = false;
-defenderWin = false;
-battle = false;
-joust = false;
-archerBattle = false;
-throneBattle = false;
-tyrantBattle = false;
-unrestBattle = false;
-invadersBattle = false;
+  $("#game-text").hide().text(rooms[currentRoom].description).fadeIn(1000);
+  declareWinner.innerText = "You lost the throne";
+  canWar = false;
+  attackerWin = false;
+  defenderWin = false;
+  battle = false;
+  joust = false;
+  archerBattle = false;
+  throneBattle = false;
+  tyrantBattle = false;
+  unrestBattle = false;
+  invadersBattle = false;
   
-joustEvent = false;
-horseraceEvent = false;
-          gameMap = origionalGameMap
-          fillMap(3)
-          fillMap(2)
-          drawGame()
+  joustEvent = false;
+  horseraceEvent = false;
+  gameMap = origionalGameMap;
+  fillMap(3);
+  fillMap(2);
+  drawGame();
 }
 
 function changeRoom(dir) {
@@ -304,10 +326,10 @@ function playerInput(input) {
       goMe();
       break;
     case "democracy":
-      achievementsUnlocked()
+      achievementsUnlocked();
       break;
     case "reset":
-      reset()
+      reset();
       break;
     default:
       $("#game-text")
@@ -341,8 +363,8 @@ $(document).ready(function () {
 //
 
 function goRide() {
-   joustEvent = true;
-document.getElementById("caveExplorationJump").style.visibility = "visible"
+  joustEvent = true;
+  document.getElementById("caveExplorationJump").style.visibility = "visible";
   biome = true;
   clearInterval(animationInterval);
   animationInterval = setInterval(function () {
@@ -366,35 +388,35 @@ function goBattle() {
   defenderArchers = 0;
   defenderHorsemenElement.innerText = defenderHorsemen;
   defenderArchersElement.innerText = defenderArchers;
-  
-  defendersElement.innerText = defenders;  
-  document.getElementById("defendersText").style.visibility = "visible"
-  defendersBtnElement.style.visibility = "visible"
+
+  defendersElement.innerText = defenders;
+  document.getElementById("defendersText").style.visibility = "visible";
+  defendersBtnElement.style.visibility = "visible";
   goToWarBtnElement.click();
   currentRoom = "room206";
   $("#game-text").hide().text(rooms[currentRoom].description).fadeIn(1000);
-  declareWinner.innerText = "Click the Soldiers Button!"
+  declareWinner.innerText = "Click the Soldiers Button!";
   //
 }
 
 function goJoust() {
-   joustEvent = true;
+  joustEvent = true;
   joust = true;
-  
-  soldiers = 5;  
+
+  soldiers = 5;
   horsemen = 0;
   archers = 0;
-  
+
   defenders = 0;
   defenderArchers = 0;
   defenderHorsemen = 5;
   defendersElement.innerText = defenders;
   defenderHorsemenElement.innerText = defenderHorsemen;
   defenderArchersElement.innerText = defenderArchers;
-  
-  document.getElementById("horsemenText").style.visibility = "visible"
-  defenderHorsemenBtnElement.style.visibility = "visible"
-  
+
+  document.getElementById("horsemenText").style.visibility = "visible";
+  defenderHorsemenBtnElement.style.visibility = "visible";
+
   //defenders = startingDefenders + level
   goToWarBtnElement.click();
   currentRoom = "room0 torch8";
@@ -404,27 +426,26 @@ function goJoust() {
 }
 
 function goLoose() {
-  soldiers = 1; 
+  soldiers = 1;
   horsemen = 0;
   archers = 0;
-  
+
   defenders = 0;
-  defenderHorsemen = 0;
+  defenderHorsemen = 1;
   defenderArchers = 10;
-  
+
   defendersElement.innerText = defenders;
   defenderHorsemenElement.innerText = defenderHorsemen;
   defenderArchersElement.innerText = defenderArchers;
-  
-  
-  
+
   archerBattle = true;
   //defenders = startingDefenders + level
   goToWarBtnElement.click();
   currentRoom = "room1003";
   $("#game-text").hide().text(rooms[currentRoom].description).fadeIn(1000);
   //room0 torch8
-  declareWinner.innerText = "+10 Archers!"
+  declareWinner.innerText = "+10 Archers!";
+  defenderHorsemenBtnElement.click();
 }
 
 function goArchers() {
@@ -432,11 +453,11 @@ function goArchers() {
   horsemen = 0;
   archers = 0;
   archerBattle = true;
-  
+
   defenderArchers = 10;
   defenders = 0;
   defenderHorsemen = 0;
- 
+
   defendersElement.innerText = defenders;
   defenderHorsemenElement.innerText = defenderHorsemen;
   defenderArchersElement.innerText = defenderArchers;
@@ -444,15 +465,15 @@ function goArchers() {
   defenderArchersElement.innerText = defenderArchers;
   currentRoom = "room1";
   $("#game-text").hide().text(rooms[currentRoom].description).fadeIn(1000);
-  declareWinner.innerText = "+10 Archers!"
-  
-  document.getElementById("archersText").style.visibility = "visible"
-  defenderArchersBtnElement.style.visibility = "visible"
+  declareWinner.innerText = "+10 Archers!";
+
+  document.getElementById("archersText").style.visibility = "visible";
+  defenderArchersBtnElement.style.visibility = "visible";
 }
 
 function goExplore() {
-  document.getElementById("cultureText").style.visibility = "visible"
-  document.getElementById("enemyCultureText").style.visibility = "visible"
+  document.getElementById("cultureText").style.visibility = "visible";
+  document.getElementById("enemyCultureText").style.visibility = "visible";
   loadMap();
   // currentRoom = "room204"
   // $("#game-text").hide().text( rooms[currentRoom].description).fadeIn(1000);
@@ -473,16 +494,16 @@ function goThrone() {
   goToWarBtnElement.click();
   currentRoom = "throne4";
   $("#game-text").hide().text(rooms[currentRoom].description).fadeIn(1000);
-  declareWinner.innerText = "+10 Soldiers, +10 Archers, + 8 Horsemen!"
+  declareWinner.innerText = "+10 Soldiers, +10 Archers, + 8 Horsemen!";
   //Make everything visible
-  document.getElementById("defendersText").style.visibility = "visible"
-  defendersBtnElement.style.visibility = "visible"
-  document.getElementById("archersText").style.visibility = "visible"
-  defenderArchersBtnElement.style.visibility = "visible"
-  document.getElementById("horsemenText").style.visibility = "visible"
-  defenderHorsemenBtnElement.style.visibility = "visible"
-  document.getElementById("cultureText").style.visibility = "visible"
-  document.getElementById("enemyCultureText").style.visibility = "visible"
+  document.getElementById("defendersText").style.visibility = "visible";
+  defendersBtnElement.style.visibility = "visible";
+  document.getElementById("archersText").style.visibility = "visible";
+  defenderArchersBtnElement.style.visibility = "visible";
+  document.getElementById("horsemenText").style.visibility = "visible";
+  defenderHorsemenBtnElement.style.visibility = "visible";
+  document.getElementById("cultureText").style.visibility = "visible";
+  document.getElementById("enemyCultureText").style.visibility = "visible";
   loadMap();
 }
 
@@ -512,52 +533,41 @@ function goReturn() {
 //
 
 function goGods() {
-  if (
-    
-    godsMonument == false
-    
-  ) {
+  if (godsMonument == false) {
     godsMonument = true;
     currentRoom = storyArray[1] + expandNumber;
     $("#game-text").hide().text(rooms[currentRoom].description).fadeIn(1000);
     cultureNumber++;
     growCity(2);
-    declareWinner.innerText = "Cities Expanded!"
+    declareWinner.innerText = "Cities Expanded!";
   }
 }
 
 function goSoldiers() {
-  if (
-    soldiersMonument == false 
-    
-  ) {
+  if (soldiersMonument == false) {
     soldiersMonument = true;
     currentRoom = storyArray[1] + expandNumber;
     $("#game-text").hide().text(rooms[currentRoom].description).fadeIn(1000);
     cultureNumber++;
     defenders = defenders + 5;
     defendersElement.innerText = defenders;
-    declareWinner.innerText = "+5 Soldiers!"
+    declareWinner.innerText = "+5 Soldiers!";
   }
 }
 
 function goMe() {
-  if (
-    
-    meMonument == false
-  ) {
+  if (meMonument == false) {
     meMonument = true;
     currentRoom = storyArray[1] + expandNumber;
     $("#game-text").hide().text(rooms[currentRoom].description).fadeIn(1000);
     cultureNumber++;
     fillMap(2);
-    declareWinner.innerText = "New City Founded!"
+    declareWinner.innerText = "New City Founded!";
   }
 }
 
 function goHorserace() {
- 
-horseraceEvent = true;
+  horseraceEvent = true;
   if (horserace == false) {
     cultureNumber++;
     //horserace = true;
@@ -584,7 +594,6 @@ function goGladiators() {
     gladiators = true;
     currentRoom = storyArray[1] + expandNumber;
     $("#game-text").hide().text(rooms[currentRoom].description).fadeIn(1000);
-    
   }
 }
 
@@ -595,7 +604,7 @@ function goFestival() {
     $("#game-text").hide().text(rooms[currentRoom].description).fadeIn(1000);
     cultureNumber++;
     growCity(2);
-    declareWinner.innerText = "Cities Expanded!"
+    declareWinner.innerText = "Cities Expanded!";
   }
 }
 
@@ -656,10 +665,10 @@ function goWise() {
     currentRoom = storyArray[2] + wisdomNumber;
     $("#game-text").hide().text(rooms[currentRoom].description).fadeIn(1000);
     expandNumber++;
-     defenders = defenders + 5;
-     defendersElement.innerText = defenders
+    defenders = defenders + 5;
+    defendersElement.innerText = defenders;
     growCity(2);
-    declareWinner.innerText = "+5 Soldiers. Cities Expanded!"
+    declareWinner.innerText = "+5 Soldiers. Cities Expanded!";
   }
 }
 
@@ -692,7 +701,7 @@ function goAlliance() {
     $("#game-text").hide().text(rooms[currentRoom].description).fadeIn(1000);
     expandNumber++;
     fillMap(2);
-    declareWinner.innerText = "New City Founded!"
+    declareWinner.innerText = "New City Founded!";
   }
 }
 
@@ -708,7 +717,7 @@ function goEmpire() {
     $("#game-text").hide().text(rooms[currentRoom].description).fadeIn(1000);
     expandNumber++;
     fillMap(2);
-    declareWinner.innerText = "New City Founded!"
+    declareWinner.innerText = "New City Founded!";
   }
 }
 
@@ -731,7 +740,7 @@ function goLibrary() {
     $("#game-text").hide().text(rooms[currentRoom].description).fadeIn(1000);
     wisdomNumber++;
     growCity(2);
-    declareWinner.innerText = "Cities Expanded!"
+    declareWinner.innerText = "Cities Expanded!";
   }
 }
 
@@ -743,21 +752,21 @@ function goProphecy() {
     wisdomNumber++;
     defenders = defenders + 5;
     defendersElement.innerText = defenders;
-    declareWinner.innerText = "+5 Soldiers!"
+    declareWinner.innerText = "+5 Soldiers!";
   }
 }
 
 function goKnowledge() {
   if (knowledge == false) {
-    defenderArchers =defenderArchers+ 5;
-    
+    defenderArchers = defenderArchers + 5;
+
     defenderArchersElement.innerText = defenderArchers;
     knowledge = true;
     currentRoom = storyArray[3] + politicsNumber;
     $("#game-text").hide().text(rooms[currentRoom].description).fadeIn(1000);
     wisdomNumber++;
     growCity(2);
-    declareWinner.innerText = "+5 Archers. Cities Expanded!"
+    declareWinner.innerText = "+5 Archers. Cities Expanded!";
   }
 }
 
@@ -768,7 +777,7 @@ function goComedy() {
     $("#game-text").hide().text(rooms[currentRoom].description).fadeIn(1000);
     wisdomNumber++;
     growCity(2);
-    declareWinner.innerText = "Cities Expanded!"
+    declareWinner.innerText = "Cities Expanded!";
   }
 }
 
@@ -780,7 +789,7 @@ function goJoke() {
     $("#game-text").hide().text(rooms[currentRoom].description).fadeIn(1000);
     wisdomNumber++;
     growCity(2);
-    declareWinner.innerText = "Cities Expanded!"
+    declareWinner.innerText = "Cities Expanded!";
   }
 }
 
@@ -800,7 +809,7 @@ function goStop() {
     politicsNumber++;
     tyrantBattle = true;
     goToWarBtnElement.click();
-    declareWinner.innerText = "Stop the tyrant!"
+    declareWinner.innerText = "Stop the tyrant!";
   }
 }
 
@@ -812,7 +821,7 @@ function goEncourage() {
     politicsNumber++;
     fillMap(3);
     //growCity(2);
-    declareWinner.innerText = "The Enemy is Growing"
+    declareWinner.innerText = "The Enemy is Growing";
   }
 }
 
@@ -829,7 +838,7 @@ function goFriends() {
     $("#game-text").hide().text(rooms[currentRoom].description).fadeIn(1000);
     politicsNumber++;
     fillMap(2);
-    declareWinner.innerText = "New City Founded!"
+    declareWinner.innerText = "New City Founded!";
   }
 }
 
@@ -845,7 +854,7 @@ function goTrade() {
     $("#game-text").hide().text(rooms[currentRoom].description).fadeIn(1000);
     politicsNumber++;
     fillMap(2);
-    declareWinner.innerText = "Cities Expanded!"
+    declareWinner.innerText = "Cities Expanded!";
   }
 }
 
@@ -859,25 +868,24 @@ function goFreetrade() {
     politicsNumber++;
     fillMap(2);
     //fillMap(2);
-    declareWinner.innerText = "New City Founded!"
+    declareWinner.innerText = "New City Founded!";
   }
 }
 
 function goEmbassy() {
   if (embassy == false) {
     soldiers = 8;
-  horsemen = 4;
-  archers = 6;
+    horsemen = 4;
+    archers = 6;
 
-  
-  goToWarBtnElement.click();
+    goToWarBtnElement.click();
 
     embassy = true;
     currentRoom = storyArray[0] + cultureNumber;
     $("#game-text").hide().text(rooms[currentRoom].description).fadeIn(1000);
     politicsNumber++;
     // fillMap(2);
-    declareWinner.innerText = "It's a trap!"
+    declareWinner.innerText = "It's a trap!";
   }
 }
 
@@ -891,7 +899,7 @@ function goHost() {
     $("#game-text").hide().text(rooms[currentRoom].description).fadeIn(1000);
     politicsNumber++;
     growCity(2);
-    declareWinner.innerText = "New City Founded!"
+    declareWinner.innerText = "New City Founded!";
   }
 }
 
@@ -1331,6 +1339,13 @@ var rooms = {
       no: "throne3",
     },
   },
+  throne30: {
+    description: "Leading an army takes practice. Type THRONE to try again",
+    directions: {
+      yes: "throne30",
+      no: "throne30",
+    },
+  },
   throne4: {
     description: "Outsmart your enemy!",
     directions: {
@@ -1601,7 +1616,8 @@ var rooms = {
     },
   },
   culture1501: {
-    description: "YOU WON! These horsemen will fight for you. Type RETURN to continue...",
+    description:
+      "YOU WON! These horsemen will fight for you. Type RETURN to continue...",
     directions: {
       yes: "culture1500",
       no: "culture1500",
@@ -2511,4 +2527,3 @@ var rooms = {
     directions: {},
   },
 };
-
