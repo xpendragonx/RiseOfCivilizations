@@ -389,20 +389,14 @@ function startGame() {
 
           archerBattle = false;
         }
-        if (throneBattle) {
-          currentRoom = "throne7";
+       if (throneBattle) {
+          currentRoom = "throne30";
           $("#game-text")
             .hide()
             .text(rooms[currentRoom].description)
             .fadeIn(1000);
           declareWinner.innerText = "You lost the throne";
-
-          throneBattle = false;
-          gameMap = origionalGameMap
-          fillMap(3)
-          fillMap(2)
-          drawGame()
-          
+          throneBattle = false;          
         }
         if (tyrantBattle) {
           declareWinner.innerText = "You Lost against the tyrant";
