@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.5">
+  </head>
+  
+  <body id = "id" style = "background-color: hsl(0, 0%, 100%);">
+    
+    <h2>Rise of Civilizations</h2>
+    <div><canvas id="game" width="200" height="200" style="display: none"></canvas></div>
+    <hr>
+    <div id="game-text" style="word-wrap: break-word"></div>
+    <hr>
+    <input type="text" id="userInput" placeholder="Type Y or N, then enter." style="width: 192px;">
+    
+    
+    <!-- Riding Start -->   
+    <div style="margin: 15px; padding: 5px; border: none; ">
+      <div style="margin: -14px; padding: -15px; border: none; ">
+      <pre id="line1">  </pre>
+      </div>
+      <div style="margin: -14px; padding: -15px; border: none; ">
+      <pre id="line2" >  </pre>
+      </div>
+    </div>    
+    <button id = "caveExplorationJump" style="visibility : hidden">Jump</button>
+ <hr>   
+    
+    <!-- Battle Board Start -->    
+    <h2 class="farm"><span id="declareWinner"></span></h2>
+    <div>
+    <p class="farm" id="battleBoardArray"></p>
+    </div>
+    <div>
+      <button class = "jobs" id ="defendersBtn" style="visibility : hidden">Soldiers</button>
+    <button  class = "jobs" id="defenderArchersBtn" style="visibility : hidden">Archers</button>
+    <button class = "jobs" id ="defenderHorsemenBtn" style="visibility : hidden">Horsemen</button>
+      
+      <h4 id = "cultureText" style="visibility : hidden; color:blue" >[] - Culture: <span id="culture"></span></h4>
+      <h4 id = "defendersText" style="visibility : hidden; color:blue" >日 - Soldiers: <span id="defenders" ></span></h4>
+    <h4 id = "horsemenText" style="visibility : hidden; color:blue">点 - Horsemen: <span id="defenderHorsemen"></span></h4>
+    <h4 id = "archersText" style="visibility : hidden; color:blue">只 - Archers: <span id="defenderArchers"></span></h4>      
+    </div> 
+    <hr>
+    <h4 id = "enemyCultureText" style="visibility : hidden; color:red" >[] - Enemy Culture: <span id="enemyCulture"></span></h4>
+    <div>
+      <button class = "jobs" id="goToWarBtn" style = "visibility:hidden" >GO TO WAR!</button>      
+
+    </div>   
+    <script>
+        function getInputValue(){           
+            // Selecting the input element and get its value 
+            var inputVal = document.getElementById("myInput");
+            var inputVal2 = document.getElementById("myInput2");
+            soldiers = inputVal.value;
+            soldiersElement.innerText = soldiers
+            inputVal.style.visibility = "hidden"
+            inputVal2.style.visibility = "hidden"
+        }
+        function getInputValue2(){           
+            // Selecting the input element and get its value 
+            var inputVal = document.getElementById("myInput3");
+            var inputVal2 = document.getElementById("myInput4");
+            horsemen = inputVal.value;
+            horsemenElement.innerText = horsemen
+            inputVal.style.visibility = "hidden"
+            inputVal2.style.visibility = "hidden"
+        }
+        function getInputValue3(){           
+            // Selecting the input element and get its value 
+            var inputVal = document.getElementById("myInput5");
+            var inputVal2 = document.getElementById("myInput6");
+            archers = inputVal.value;
+            archersElement.innerText = archers
+            inputVal.style.visibility = "hidden"
+            inputVal2.style.visibility = "hidden"
+        }
+        function getInputValue4(){           
+            // Selecting the input element and get its value 
+            var inputVal = document.getElementById("myInput7");
+            var inputVal2 = document.getElementById("myInput8");
+            defenders = inputVal.value;
+            defendersElement.innerText = defenders
+            inputVal.style.visibility = "hidden"
+            inputVal2.style.visibility = "hidden"
+        }
+        function getInputValue5(){           
+            // Selecting the input element and get its value 
+            var inputVal = document.getElementById("myInput9");
+            var inputVal2 = document.getElementById("myInput10");
+            defenderHorsemen = inputVal.value;
+            defenderHorsemenElement.innerText = defenderHorsemen
+            inputVal.style.visibility = "hidden"
+            inputVal2.style.visibility = "hidden"
+        }
+        function getInputValue6(){           
+            // Selecting the input element and get its value 
+            var inputVal = document.getElementById("myInput11");
+            var inputVal2 = document.getElementById("myInput12");
+            defenderArchers = inputVal.value;
+            defenderArchersElement.innerText = defenderArchers
+            inputVal.style.visibility = "hidden"
+            inputVal2.style.visibility = "hidden"
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.0/jquery-ui.min.js"></script>
+    <script src="gamemap.js"></script>
+    
+    <script src="sketch.js"></script>
+    <script src="world.js"></script>
+    <script src="story.js"></script>
+  </body>
+</html>
