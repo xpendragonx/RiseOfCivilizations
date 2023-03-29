@@ -2,7 +2,7 @@ let blue = "#0000FF";
 
 // Score variablies
 let library = false;
-let tyrant = true;
+let tyrant = false;
 let encourage = false;
 let soldiersMonument = false;
 let godsMonument = false;
@@ -13,7 +13,7 @@ let friends = false;
 let horserace = false;
 let gladiators = false;
 let festival = false;
-let unrest = true;
+let unrest = false;
 let wisdom = false;
 let knowledge = false;
 let trade = false;
@@ -41,10 +41,11 @@ var currentRoom = "open";
 var commands = ["go", "pickup", "inventory", "talk", "use"];
 var inventory = ["torch", "spear"];
 let storyArray = ["culture", "expand", "wisdom", "politics"];
+let unlocked = ["Achevements: "," ??????????"," ??????????"," ??????????"," ??????????"," ??????????"," ??????????"," ??????????"," ??????????"," ??????????"," ??????????"," ??????????"," ??????????"," ??????????"," ??????????"," ??????????"," ??????????"," ??????????"," ??????????"," ??????????"," ??????????"," ??????????"," ??????????"," ??????????"," ??????????"," ??????????"," ??????????"," ??????????"," ------ to unlock more type RESET ------"];
 
 function achievementsUnlocked() {
   loadMap();
-  let unlocked = ["Achevements: "];
+  
   let achievements = {
     library,
     tyrant,
@@ -75,23 +76,49 @@ function achievementsUnlocked() {
     democracy,
   };
   var result;
+  let counter = 0;
   for (var i in achievements) {
+    counter++
     if (achievements[i] === true) {
-      //console.log(i);
       result = true;
-      unlocked.push(" " + i.toUpperCase());
+      unlocked.splice(counter, 1, " " + i.toUpperCase());
     } else {
-      //console.log(i);
       result = false;
-      unlocked.push(" ??????????");
     }
   }
-  unlocked.push(" ------ to unlock more type RESET ------");
   $("#game-text").hide().text(unlocked.toString()).fadeIn(1000);
   declareWinner.innerText = "Score: Blue: " + blueScore + " / Red: " + redScore;
+  console.log(unlocked.toString())
 }
 
 function reset() {
+library = false;
+tyrant = false;
+encourage = false;
+soldiersMonument = false;
+godsMonument = false;
+meMonument = false;
+city = false;
+prophecy = false;
+friends = false;
+horserace = false;
+gladiators = false;
+festival = false;
+unrest = false;
+wisdom = false;
+knowledge = false;
+trade = false;
+freeTrade = false;
+lands = false;
+fight = false;
+alliance = false;
+comedy = false;
+joke = false;
+embassy = false;
+host = false;
+empire = false;
+tribute = false;
+democracy = false;
   currentRoom = "throne7";
   $("#game-text").hide().text(rooms[currentRoom].description).fadeIn(1000);
   declareWinner.innerText = "You lost the throne";
@@ -647,8 +674,8 @@ function goCity() {
 }
 
 function goUnrest() {
-  if (unrest == true) {
-    unrest = false;
+  if (unrest == false) {
+    unrest = true;
     currentRoom = storyArray[2] + wisdomNumber;
     $("#game-text").hide().text(rooms[currentRoom].description).fadeIn(1000);
     expandNumber++;
@@ -799,12 +826,12 @@ function goJoke() {
 //
 
 function goStop() {
-  if (tyrant == true) {
+  if (tyrant == false) {
     soldiers = 5;
     horsemen = 0;
     archers = 0;
 
-    tyrant = false;
+    tyrant = true;
     currentRoom = storyArray[0] + cultureNumber;
     $("#game-text").hide().text(rooms[currentRoom].description).fadeIn(1000);
     politicsNumber++;
@@ -828,10 +855,10 @@ function goEncourage() {
 
 function goFriends() {
   if (friends == false) {
-    // defenders = defenders+5;
+    defenders = defenders-3;
     // defenderHorsemen = defenderHorsemen+5;
     // defenderArchers = defenderArchers+5;
-    // defendersElement.innerText = defenders;
+    defendersElement.innerText = defenders;
     // defenderHorsemenElement.innerText = defenderHorsemen;
     // defenderArchersElement.innerText = defenderArchers;
     friends = true;
@@ -839,7 +866,7 @@ function goFriends() {
     $("#game-text").hide().text(rooms[currentRoom].description).fadeIn(1000);
     politicsNumber++;
     fillMap(2);
-    declareWinner.innerText = "New City Founded!";
+    declareWinner.innerText = "-3 Soldiers. New City Founded!";
   }
 }
 
@@ -1140,8 +1167,8 @@ var rooms = {
   room203: {
     description: "...To win, you must control more area than the other side...",
     directions: {
-      yes: "room208",
-      no: "room208",
+      yes: "room205",
+      no: "room205",
     },
   },
   room208: {
