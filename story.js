@@ -154,7 +154,7 @@ function changeRoom(dir) {
 }
 
 function showWin() {
-  var txt = "Click for prize!";
+  var txt = "Click to win!";
   document.write(
     "<p>Link : " + txt.link("https://forms.gle/ohUcGtdcM3C1JKHZ9") + "</p>"
   );
